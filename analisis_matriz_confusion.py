@@ -153,7 +153,8 @@ if __name__ == "__main__":
 
 """
 ### Interpretación
-- Con TP=50, FP=23, TN=10, FN=17 (N=100), el modelo acierta el 60%. Detecta la mayoría de malignos, pero falla mucho en reconocer no malignos y en descartar con seguridad.
+- Con TP=50, FP=23, TN=10, FN=17 (N=100), el modelo acierta el 60%. Detecta la mayoría de malignos, 
+pero falla mucho en reconocer no malignos y en descartar con seguridad.
 
 ### ¿Qué significa cada métrica obtenida?
 - Exactitud (ACC) 60.00%: aciertos totales sobre 100 casos. Es menor que predecir “todo maligno” (≈67%), señal de bajo desempeño global.
