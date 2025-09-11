@@ -38,6 +38,26 @@ Apoyar el aprendizaje práctico de conceptos de Inteligencia Artificial, métric
     - Instalación: `pip install ipykernel`
     - Documentación: `https://ipykernel.readthedocs.io/en/latest/`
 
+### Fuente de Datos
+
+Este proyecto utiliza el dataset **"Myocardial Infarction Complications"** del [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/579/myocardial+infarction+complications).
+
+**Referencia del Dataset:**
+- **Título**: Myocardial infarction complications
+- **Fuente**: UCI ML Repository (ID: 579)
+- **DOI**: 10.24432/C53P5M
+- **Licencia**: Creative Commons Attribution 4.0 International (CC BY 4.0)
+- **Creadores**: S.E. Golovenkin, V.A. Shulman, D.A. Rossiev, P.A. Shesternya, S.Yu. Nikulina, Yu.V. Orlova, V.F. Voino-Yasenetsky
+- **Institución**: Krasnoyarsk State Medical University
+- **Año**: 2020
+
+**Características del Dataset:**
+- **Instancias**: 1,700 pacientes
+- **Características**: 111 variables médicas
+- **Tipo**: Clasificación médica
+- **Valores faltantes**: Sí (manejados en el proyecto)
+- **Área**: Salud y Medicina
+
 ---
 
 ### Entorno virtual recomendado
@@ -162,14 +182,65 @@ python parcial_1.py
 - **Menú interactivo**: Después de cada análisis, regresa al menú principal
 - **Flexible**: Puedes usar diferentes modelos o salir cuando quieras
 - **Orden lógico**: Primero muestra gráficos, después métricas detalladas
+- **Pausa interactiva**: Permite al usuario leer las métricas antes de continuar
 - **Cálculos precisos**: Usa funciones especializadas para métricas de clasificación
 
 ### Información de los Datos
 
+- **Dataset**: [Myocardial Infarction Complications](https://archive.ics.uci.edu/dataset/579/myocardial+infarction+complications) del UCI ML Repository
 - **Total de pacientes**: 303 personas
 - **Información que se usa**: 14 características médicas
-- **Objetivo**: Predecir si el paciente vive o muere
+- **Objetivo**: Predecir si el paciente vive o muere por complicaciones del infarto al miocardio
 - **Datos importantes**: edad, sexo, dolor en el pecho, presión arterial, colesterol, etc.
+
+### Significado de los Datos Médicos
+
+Este proyecto utiliza datos reales de pacientes con **infarto agudo al miocardio** (ataque al corazón). Los datos provienen del [UCI ML Repository](https://archive.ics.uci.edu/dataset/579/myocardial+infarction+complications) y contienen información médica importante:
+
+#### Características Demográficas:
+- **Edad**: Factor de riesgo importante para complicaciones
+- **Sexo**: Los hombres tienen mayor riesgo de infarto
+
+#### Síntomas y Antecedentes:
+- **Dolor en el pecho (cp)**: Tipo de dolor torácico experimentado
+- **Angina de esfuerzo**: Dolor relacionado con actividad física
+- **Antecedentes familiares**: Historia de enfermedades cardíacas en la familia
+
+#### Mediciones Fisiológicas:
+- **Presión arterial (trestbps)**: Presión sistólica en reposo
+- **Colesterol (chol)**: Nivel de colesterol en sangre
+- **Azúcar en ayunas (fbs)**: Diabetes como factor de riesgo
+- **Frecuencia cardíaca máxima (thalach)**: Capacidad del corazón bajo estrés
+
+#### Resultados del Electrocardiograma:
+- **Ondas T invertidas (restecg)**: Signos de daño cardíaco
+- **Depresión del segmento ST (oldpeak)**: Indicador de isquemia
+
+#### Complicaciones y Tratamiento:
+- **Angina inducida por ejercicio (exang)**: Dolor durante actividad
+- **Pendiente del segmento ST (slope)**: Patrón de recuperación
+- **Vasos principales (ca)**: Número de arterias coronarias bloqueadas
+- **Defecto talámico (thal)**: Anomalías en el flujo sanguíneo
+
+#### Variable Objetivo:
+- **Resultado (num)**: 0-1 = Sin complicaciones (Vive), 2-4 = Con complicaciones (Muere)
+
+### Importancia Médica
+
+Este dataset es especialmente valioso porque:
+
+1. **Datos reales**: Proviene de casos clínicos reales de pacientes
+2. **Alta mortalidad**: El infarto al miocardio es una de las principales causas de muerte
+3. **Predicción temprana**: Permite identificar pacientes en riesgo antes de que sea demasiado tarde
+4. **Tratamiento personalizado**: Ayuda a los médicos a decidir el mejor tratamiento
+5. **Investigación médica**: Contribuye al avance de la medicina preventiva
+
+### Aplicaciones Prácticas
+
+- **Diagnóstico asistido**: Ayuda a los médicos a evaluar el riesgo del paciente
+- **Triage hospitalario**: Prioriza la atención de pacientes de alto riesgo
+- **Planificación de tratamiento**: Determina qué pacientes necesitan intervención inmediata
+- **Investigación clínica**: Estudia patrones y factores de riesgo
 
 ### Detalles Técnicos
 
@@ -188,12 +259,19 @@ python parcial_1.py
 #### Orden de Presentación Optimizado
 - **Gráficos primero**: Se muestran las visualizaciones inmediatamente después del entrenamiento
 - **Métricas después**: Las métricas detalladas aparecen al final como resumen completo
+- **Pausa interactiva**: Después de mostrar las métricas, el programa pausa para que el usuario pueda leer
 - **Flujo natural**: Análisis visual precede al análisis numérico detallado
 
 #### Estructura Modular
 - **Separación de responsabilidades**: Cada archivo tiene una función específica
 - **Fácil mantenimiento**: Cambios en métricas se hacen en un solo lugar
 - **Reutilización**: Las funciones de métricas pueden usarse en otros proyectos
+
+#### Mejoras de Usabilidad
+- **Pausa después de métricas**: El programa espera a que el usuario presione una tecla
+- **Control del flujo**: El usuario decide cuándo continuar después de ver los resultados
+- **Mejor experiencia**: Evita que la información se desplace demasiado rápido
+- **Tiempo para análisis**: Permite revisar tranquilamente las métricas detalladas
 
 ### ¿Cómo funciona el programa?
 
@@ -206,7 +284,8 @@ python parcial_1.py
 5. **Muestra el menú**: Te deja elegir qué hacer
 6. **Ejecuta tu opción**: Entrena el modelo que elegiste
 7. **Muestra resultados**: Gráficos y números de qué tan bien funciona
-8. **Regresa al menú**: Puedes elegir otra opción o salir
+8. **Pausa interactiva**: Espera a que presiones una tecla para continuar
+9. **Regresa al menú**: Puedes elegir otra opción o salir
 
 #### Opciones disponibles:
 
@@ -239,5 +318,29 @@ python parcial_1.py
 2. **Gráficos visuales** (importancia de características, matriz de confusión)
 3. **Comparaciones** (solo para Regresión Logística)
 4. **Métricas detalladas** con análisis completo de precisión
+5. **Pausa interactiva** para que el usuario pueda leer las métricas
+6. **Regreso al menú** principal para nueva selección
+
+## Referencias y Enlaces Útiles
+
+### Dataset Original
+- **UCI ML Repository**: [Myocardial Infarction Complications](https://archive.ics.uci.edu/dataset/579/myocardial+infarction+complications)
+- **DOI**: 10.24432/C53P5M
+- **Paper de Referencia**: "Trajectories, bifurcations, and pseudo-time in large clinical datasets: applications to myocardial infarction and diabetes data" - GigaScience, 2020
+
+### Documentación Técnica
+- **UCI ML Repository**: https://archive.ics.uci.edu/
+- **Scikit-learn**: https://scikit-learn.org/stable/
+- **Pandas**: https://pandas.pydata.org/docs/
+- **Matplotlib**: https://matplotlib.org/stable/
+
+### Información Médica
+- **Infarto Agudo al Miocardio**: Enfermedad cardiovascular grave que requiere atención médica inmediata
+- **Factores de Riesgo**: Edad, sexo, antecedentes familiares, diabetes, hipertensión, colesterol alto
+- **Diagnóstico**: Electrocardiograma, análisis de sangre, angiografía coronaria
+- **Tratamiento**: Medicamentos, angioplastia, cirugía de bypass coronario
+
+### Uso Responsable
+⚠️ **Importante**: Este proyecto es únicamente para fines educativos y de investigación. No debe utilizarse para diagnóstico médico real. Siempre consulte con profesionales médicos calificados para cualquier decisión relacionada con la salud.
 
 
