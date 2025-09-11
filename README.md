@@ -1,42 +1,26 @@
+# Proyecto de Predicción de Supervivencia por Infarto al Miocardio
+
 ## Fundamentos IA – Universidad de la Costa (CUC)
 
 Repositorio creado para el desarrollo de ejercicios pedagógicos de la carrera de Ingeniería Electrónica de la Universidad de la Costa.
 
-- Autor: Johan Charris
-- Ubicación: Colombia
-- Periodo: 2025
+- **Autor**: Johan Charris
+- **Ubicación**: Colombia
+- **Periodo**: 2025
 
-### Objetivo
-Apoyar el aprendizaje práctico de conceptos de Inteligencia Artificial, métricas de evaluación y manejo básico de herramientas en Python, usando ejemplos simples y reproducibles.
+---
 
-### Librerías utilizadas
-- Python 3.x (biblioteca estándar).
-- `math` para operaciones numéricas elementales.
-- NumPy (cálculo numérico)
-  - Instalación: `pip install numpy`
-  - Documentación: `https://numpy.org/doc/`
-- pandas (manipulación de datos)
-  - Instalación: `pip install pandas`
-  - Documentación: `https://pandas.pydata.org/docs/`
-- Matplotlib (visualización)
-  - Instalación: `pip install matplotlib`
-  - Documentación: `https://matplotlib.org/stable/`
-- scikit-learn (aprendizaje automático)
-  - Instalación: `pip install scikit-learn`
-  - Documentación: `https://scikit-learn.org/stable/`
-- ucimlrepo (carga de datasets UCI)
-  - Instalación: `pip install ucimlrepo`
-  - Documentación: `https://pypi.org/project/ucimlrepo/`
-- seaborn (visualización avanzada)
-  - Instalación: `pip install seaborn`
-  - Documentación: `https://seaborn.pydata.org/`
-- Opcional para actividades en cuadernos:
-  - Jupyter
-    - Instalación: `pip install jupyter`
-    - Documentación: `https://jupyter.org/`
-  - IPykernel
-    - Instalación: `pip install ipykernel`
-    - Documentación: `https://ipykernel.readthedocs.io/en/latest/`
+## 🎯 Objetivo del Proyecto
+
+Este proyecto ayuda a predecir si una persona vivirá o morirá después de un infarto al corazón usando dos métodos diferentes de inteligencia artificial: Random Forest y Regresión Logística. Utiliza datos reales de pacientes para crear modelos que pueden identificar factores de riesgo y predecir complicaciones médicas.
+
+---
+
+## 🏥 Contexto Médico y Dataset
+
+### ¿Qué es un Infarto al Miocardio?
+
+El **infarto agudo al miocardio** (ataque al corazón) es una de las enfermedades más peligrosas y comunes en el mundo. Ocurre cuando se bloquea el flujo de sangre al corazón, causando daño al músculo cardíaco.
 
 ### Fuente de Datos
 
@@ -58,45 +42,119 @@ Este proyecto utiliza el dataset **"Myocardial Infarction Complications"** del [
 - **Valores faltantes**: Sí (manejados en el proyecto)
 - **Área**: Salud y Medicina
 
+### Problema Médico Real
+
+Según la información del [dataset original](https://archive.ics.uci.edu/dataset/579/myocardial+infarction+complications), este proyecto aborda uno de los problemas más desafiantes de la medicina moderna:
+
+#### **Estadísticas Alarmantes**
+- **Estados Unidos**: Más de un millón de personas sufren infarto cada año
+- **Mortalidad pre-hospitalaria**: 200-300 mil mueren antes de llegar al hospital
+- **Complicaciones**: Aproximadamente la mitad de los pacientes desarrollan complicaciones graves
+- **Pronóstico**: Las complicaciones pueden empeorar la enfermedad e incluso causar la muerte
+
+#### **Desafío Clínico**
+- **Predicción difícil**: Incluso especialistas experimentados no siempre pueden predecir complicaciones
+- **Prevención crucial**: La predicción temprana permite tomar medidas preventivas necesarias
+- **Tiempo crítico**: La intervención temprana puede salvar vidas
+- **Decisiones complejas**: Los médicos necesitan herramientas para tomar decisiones informadas
+
+### ¿Por Qué Realizamos Estos Entrenamientos?
+
+#### **1. Necesidad Médica Urgente**
+- **Vidas en riesgo**: Cada predicción correcta puede salvar una vida
+- **Tiempo limitado**: Los médicos necesitan decisiones rápidas y precisas
+- **Complicaciones impredecibles**: Los modelos de IA pueden detectar patrones que los humanos no ven
+- **Prevención proactiva**: Identificar pacientes de alto riesgo antes de que sea demasiado tarde
+
+#### **2. Datos Reales y Complejos**
+- **1,700 pacientes reales**: Datos de casos clínicos auténticos
+- **111 características médicas**: Información detallada de cada paciente
+- **Múltiples momentos de predicción**: 
+  - Al ingreso al hospital
+  - Después de 24 horas
+  - Después de 48 horas  
+  - Después de 72 horas
+- **Complicaciones diversas**: 12 tipos diferentes de complicaciones posibles
+
+#### **3. Tipos de Complicaciones que Predicen**
+- **Fibrilación auricular**: Arritmia cardíaca peligrosa
+- **Taquicardia supraventricular**: Ritmo cardíaco acelerado
+- **Taquicardia ventricular**: Ritmo peligroso en las cámaras del corazón
+- **Fibrilación ventricular**: Arritmia que puede ser fatal
+- **Bloqueo AV de tercer grado**: Problema en la conducción eléctrica del corazón
+- **Edema pulmonar**: Acumulación de líquido en los pulmones
+- **Ruptura miocárdica**: Desgarro en el músculo cardíaco
+- **Síndrome de Dressler**: Inflamación del pericardio
+- **Insuficiencia cardíaca crónica**: Debilitamiento del corazón
+- **Recidiva del infarto**: Segundo infarto
+- **Angina post-infarto**: Dolor torácico después del infarto
+- **Resultado letal**: Muerte por diversas causas
+
+### Significado de los Datos Médicos
+
+Este proyecto utiliza datos reales de pacientes con **infarto agudo al miocardio** (ataque al corazón). Los datos contienen información médica importante:
+
+#### Características Demográficas:
+- **Edad**: Factor de riesgo importante para complicaciones
+- **Sexo**: Los hombres tienen mayor riesgo de infarto
+
+#### Síntomas y Antecedentes:
+- **Dolor en el pecho (cp)**: Tipo de dolor torácico experimentado
+- **Angina de esfuerzo**: Dolor relacionado con actividad física
+- **Antecedentes familiares**: Historia de enfermedades cardíacas en la familia
+
+#### Mediciones Fisiológicas:
+- **Presión arterial (trestbps)**: Presión sistólica en reposo
+- **Colesterol (chol)**: Nivel de colesterol en sangre
+- **Azúcar en ayunas (fbs)**: Diabetes como factor de riesgo
+- **Frecuencia cardíaca máxima (thalach)**: Capacidad del corazón bajo estrés
+
+#### Resultados del Electrocardiograma:
+- **Ondas T invertidas (restecg)**: Signos de daño cardíaco
+- **Depresión del segmento ST (oldpeak)**: Indicador de isquemia
+
+#### Complicaciones y Tratamiento:
+- **Angina inducida por ejercicio (exang)**: Dolor durante actividad
+- **Pendiente del segmento ST (slope)**: Patrón de recuperación
+- **Vasos principales (ca)**: Número de arterias coronarias bloqueadas
+- **Defecto talámico (thal)**: Anomalías en el flujo sanguíneo
+
+#### Variable Objetivo:
+- **Resultado (num)**: 0-1 = Sin complicaciones (Vive), 2-4 = Con complicaciones (Muere)
+
+### Relevancia Clínica de Nuestros Resultados
+
+#### **Precisión Clínicamente Significativa**
+- **83-84% de precisión**: Nivel comparable a herramientas de diagnóstico médico estándar
+- **Detección temprana**: Identifica pacientes de alto riesgo antes de que desarrollen complicaciones
+- **Reducción de mortalidad**: Cada predicción correcta puede prevenir una muerte
+- **Optimización de recursos**: Permite asignar recursos médicos a los pacientes que más los necesitan
+
+#### **Características Más Importantes Identificadas**
+Según nuestros modelos, las características más críticas para la supervivencia son:
+
+1. **Depresión del segmento ST (oldpeak)**: Indicador directo de daño cardíaco
+2. **Frecuencia cardíaca máxima (thalach)**: Capacidad funcional del corazón
+3. **Número de vasos bloqueados (ca)**: Severidad de la enfermedad coronaria
+4. **Defecto talámico (thal)**: Anomalías en el flujo sanguíneo
+5. **Tipo de dolor en el pecho (cp)**: Patrón de síntomas del paciente
+
+#### **Aplicación en la Práctica Médica**
+- **Triage inteligente**: Clasificar pacientes según su riesgo de complicaciones
+- **Monitoreo continuo**: Seguimiento de pacientes de alto riesgo
+- **Decisiones de tratamiento**: Guiar la elección de terapias más agresivas
+- **Educación médica**: Enseñar a estudiantes de medicina sobre factores de riesgo
+- **Investigación clínica**: Identificar nuevos patrones y factores de riesgo
+
+#### **Limitaciones y Consideraciones Éticas**
+- **Solo para fines educativos**: No debe usarse para diagnóstico médico real
+- **Complemento, no reemplazo**: Los modelos apoyan, no sustituyen, el juicio clínico
+- **Validación clínica necesaria**: Requiere estudios clínicos rigurosos antes del uso real
+- **Responsabilidad médica**: Los médicos mantienen la responsabilidad final de las decisiones
+
 ---
 
-### Entorno virtual recomendado
-Para aislar dependencias y facilitar la reproducción, se recomienda usar un entorno virtual con `venv`:
-
-macOS / Linux:
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-```
-
-Windows (PowerShell):
-```powershell
-py -m venv .venv
-.venv\\Scripts\\Activate.ps1
-python -m pip install --upgrade pip
-```
-
-Instalar las librerías requeridas:
-```bash
-pip install numpy pandas matplotlib scikit-learn ucimlrepo seaborn
-# Opcional para cuadernos
-pip install jupyter ipykernel
-```
-
-O usar el archivo de dependencias del proyecto:
-```bash
-pip install -r requirements.txt
-```
-
-Para salir del entorno: `deactivate`.
-
----
-
-## Proyecto de Predicción de Supervivencia por Infarto al Miocardio
-
-### ¿Qué hace este proyecto?
-Este proyecto ayuda a predecir si una persona vivirá o morirá después de un infarto al corazón. Usa dos métodos diferentes de inteligencia artificial: Random Forest y Regresión Logística.
+## 🛠️ Aspectos Técnicos del Proyecto
 
 ### Estructura del Proyecto
 
@@ -157,23 +215,6 @@ Fundamentos_IA_CUC/
 - **Vive**: 219 pacientes (72.3%)
 - **Muere**: 84 pacientes (27.7%)
 
-### ¿Cómo usar este proyecto?
-
-1. **Instalar las herramientas necesarias**:
-```bash
-pip install -r requirements.txt
-```
-
-2. **Ejecutar el programa**:
-```bash
-python parcial_1.py
-```
-
-3. **Elegir qué hacer**:
-   - **Opción 1**: Usar Random Forest (Bosque Aleatorio)
-   - **Opción 2**: Usar Regresión Logística
-   - **Opción 3**: Salir del programa
-
 ### Características del Sistema
 
 - **Fácil de usar**: Menú simple para elegir qué hacer
@@ -184,159 +225,6 @@ python parcial_1.py
 - **Orden lógico**: Primero muestra gráficos, después métricas detalladas
 - **Pausa interactiva**: Permite al usuario leer las métricas antes de continuar
 - **Cálculos precisos**: Usa funciones especializadas para métricas de clasificación
-
-### Información de los Datos
-
-- **Dataset**: [Myocardial Infarction Complications](https://archive.ics.uci.edu/dataset/579/myocardial+infarction+complications) del UCI ML Repository
-- **Total de pacientes**: 303 personas
-- **Información que se usa**: 14 características médicas
-- **Objetivo**: Predecir si el paciente vive o muere por complicaciones del infarto al miocardio
-- **Datos importantes**: edad, sexo, dolor en el pecho, presión arterial, colesterol, etc.
-
-### Significado de los Datos Médicos
-
-Este proyecto utiliza datos reales de pacientes con **infarto agudo al miocardio** (ataque al corazón). Los datos provienen del [UCI ML Repository](https://archive.ics.uci.edu/dataset/579/myocardial+infarction+complications) y contienen información médica importante:
-
-#### Características Demográficas:
-- **Edad**: Factor de riesgo importante para complicaciones
-- **Sexo**: Los hombres tienen mayor riesgo de infarto
-
-#### Síntomas y Antecedentes:
-- **Dolor en el pecho (cp)**: Tipo de dolor torácico experimentado
-- **Angina de esfuerzo**: Dolor relacionado con actividad física
-- **Antecedentes familiares**: Historia de enfermedades cardíacas en la familia
-
-#### Mediciones Fisiológicas:
-- **Presión arterial (trestbps)**: Presión sistólica en reposo
-- **Colesterol (chol)**: Nivel de colesterol en sangre
-- **Azúcar en ayunas (fbs)**: Diabetes como factor de riesgo
-- **Frecuencia cardíaca máxima (thalach)**: Capacidad del corazón bajo estrés
-
-#### Resultados del Electrocardiograma:
-- **Ondas T invertidas (restecg)**: Signos de daño cardíaco
-- **Depresión del segmento ST (oldpeak)**: Indicador de isquemia
-
-#### Complicaciones y Tratamiento:
-- **Angina inducida por ejercicio (exang)**: Dolor durante actividad
-- **Pendiente del segmento ST (slope)**: Patrón de recuperación
-- **Vasos principales (ca)**: Número de arterias coronarias bloqueadas
-- **Defecto talámico (thal)**: Anomalías en el flujo sanguíneo
-
-#### Variable Objetivo:
-- **Resultado (num)**: 0-1 = Sin complicaciones (Vive), 2-4 = Con complicaciones (Muere)
-
-### Importancia Médica
-
-Este dataset es especialmente valioso porque:
-
-1. **Datos reales**: Proviene de casos clínicos reales de pacientes
-2. **Alta mortalidad**: El infarto al miocardio es una de las principales causas de muerte
-3. **Predicción temprana**: Permite identificar pacientes en riesgo antes de que sea demasiado tarde
-4. **Tratamiento personalizado**: Ayuda a los médicos a decidir el mejor tratamiento
-5. **Investigación médica**: Contribuye al avance de la medicina preventiva
-
-### Aplicaciones Prácticas
-
-- **Diagnóstico asistido**: Ayuda a los médicos a evaluar el riesgo del paciente
-- **Triage hospitalario**: Prioriza la atención de pacientes de alto riesgo
-- **Planificación de tratamiento**: Determina qué pacientes necesitan intervención inmediata
-- **Investigación clínica**: Estudia patrones y factores de riesgo
-
-### Contexto Clínico del Dataset
-
-Según la información del [dataset original](https://archive.ics.uci.edu/dataset/579/myocardial+infarction+complications), este proyecto aborda uno de los problemas más desafiantes de la medicina moderna:
-
-#### **Problema Médico Real**
-- **Alta mortalidad**: El infarto agudo al miocardio está asociado con alta mortalidad en el primer año
-- **Incidencia global**: La incidencia de infartos sigue siendo alta en todos los países
-- **Población urbana**: Especialmente afecta a la población urbana de países desarrollados
-- **Factores de riesgo**: Exposición a estrés crónico, nutrición irregular y desequilibrada
-
-#### **Estadísticas Alarmantes**
-- **Estados Unidos**: Más de un millón de personas sufren infarto cada año
-- **Mortalidad pre-hospitalaria**: 200-300 mil mueren antes de llegar al hospital
-- **Complicaciones**: Aproximadamente la mitad de los pacientes desarrollan complicaciones graves
-- **Pronóstico**: Las complicaciones pueden empeorar la enfermedad e incluso causar la muerte
-
-#### **Desafío Clínico**
-- **Predicción difícil**: Incluso especialistas experimentados no siempre pueden predecir complicaciones
-- **Prevención crucial**: La predicción temprana permite tomar medidas preventivas necesarias
-- **Tiempo crítico**: La intervención temprana puede salvar vidas
-- **Decisiones complejas**: Los médicos necesitan herramientas para tomar decisiones informadas
-
-### **Por Qué Realizamos Estos Entrenamientos**
-
-#### **1. Necesidad Médica Urgente**
-- **Vidas en riesgo**: Cada predicción correcta puede salvar una vida
-- **Tiempo limitado**: Los médicos necesitan decisiones rápidas y precisas
-- **Complicaciones impredecibles**: Los modelos de IA pueden detectar patrones que los humanos no ven
-- **Prevención proactiva**: Identificar pacientes de alto riesgo antes de que sea demasiado tarde
-
-#### **2. Datos Reales y Complejos**
-- **1,700 pacientes reales**: Datos de casos clínicos auténticos
-- **111 características médicas**: Información detallada de cada paciente
-- **Múltiples momentos de predicción**: 
-  - Al ingreso al hospital
-  - Después de 24 horas
-  - Después de 48 horas  
-  - Después de 72 horas
-- **Complicaciones diversas**: 12 tipos diferentes de complicaciones posibles
-
-#### **3. Aplicaciones Específicas del Dataset**
-- **Predicción de complicaciones**: Basada en información del paciente al ingreso
-- **Fenotipado de enfermedades**: Análisis de clusters y patrones
-- **Fenotipado dinámico**: Identificación de trayectorias de la enfermedad
-- **Visualización médica**: Mapeo de enfermedades para mejor comprensión
-
-#### **4. Tipos de Complicaciones que Predicen**
-- **Fibrilación auricular**: Arritmia cardíaca peligrosa
-- **Taquicardia supraventricular**: Ritmo cardíaco acelerado
-- **Taquicardia ventricular**: Ritmo peligroso en las cámaras del corazón
-- **Fibrilación ventricular**: Arritmia que puede ser fatal
-- **Bloqueo AV de tercer grado**: Problema en la conducción eléctrica del corazón
-- **Edema pulmonar**: Acumulación de líquido en los pulmones
-- **Ruptura miocárdica**: Desgarro en el músculo cardíaco
-- **Síndrome de Dressler**: Inflamación del pericardio
-- **Insuficiencia cardíaca crónica**: Debilitamiento del corazón
-- **Recidiva del infarto**: Segundo infarto
-- **Angina post-infarto**: Dolor torácico después del infarto
-- **Resultado letal**: Muerte por diversas causas
-
-#### **5. Impacto de Nuestros Modelos**
-- **Random Forest**: Identifica qué características son más importantes para la supervivencia
-- **Regresión Logística**: Proporciona probabilidades de riesgo y factores específicos
-- **Precisión del 83-84%**: Nivel de precisión clínicamente relevante
-- **Interpretabilidad**: Los médicos pueden entender por qué el modelo hace cada predicción
-
-### **Relevancia Clínica de Nuestros Resultados**
-
-#### **Precisión Clínicamente Significativa**
-- **83-84% de precisión**: Nivel comparable a herramientas de diagnóstico médico estándar
-- **Detección temprana**: Identifica pacientes de alto riesgo antes de que desarrollen complicaciones
-- **Reducción de mortalidad**: Cada predicción correcta puede prevenir una muerte
-- **Optimización de recursos**: Permite asignar recursos médicos a los pacientes que más los necesitan
-
-#### **Características Más Importantes Identificadas**
-Según nuestros modelos, las características más críticas para la supervivencia son:
-
-1. **Depresión del segmento ST (oldpeak)**: Indicador directo de daño cardíaco
-2. **Frecuencia cardíaca máxima (thalach)**: Capacidad funcional del corazón
-3. **Número de vasos bloqueados (ca)**: Severidad de la enfermedad coronaria
-4. **Defecto talámico (thal)**: Anomalías en el flujo sanguíneo
-5. **Tipo de dolor en el pecho (cp)**: Patrón de síntomas del paciente
-
-#### **Aplicación en la Práctica Médica**
-- **Triage inteligente**: Clasificar pacientes según su riesgo de complicaciones
-- **Monitoreo continuo**: Seguimiento de pacientes de alto riesgo
-- **Decisiones de tratamiento**: Guiar la elección de terapias más agresivas
-- **Educación médica**: Enseñar a estudiantes de medicina sobre factores de riesgo
-- **Investigación clínica**: Identificar nuevos patrones y factores de riesgo
-
-#### **Limitaciones y Consideraciones Éticas**
-- **Solo para fines educativos**: No debe usarse para diagnóstico médico real
-- **Complemento, no reemplazo**: Los modelos apoyan, no sustituyen, el juicio clínico
-- **Validación clínica necesaria**: Requiere estudios clínicos rigurosos antes del uso real
-- **Responsabilidad médica**: Los médicos mantienen la responsabilidad final de las decisiones
 
 ### Detalles Técnicos
 
@@ -369,9 +257,92 @@ Según nuestros modelos, las características más críticas para la supervivenc
 - **Mejor experiencia**: Evita que la información se desplace demasiado rápido
 - **Tiempo para análisis**: Permite revisar tranquilamente las métricas detalladas
 
-### ¿Cómo funciona el programa?
+---
 
-#### Pasos que sigue:
+## 🚀 Cómo Usar el Proyecto
+
+### Instalación
+
+1. **Instalar las herramientas necesarias**:
+```bash
+pip install -r requirements.txt
+```
+
+2. **Ejecutar el programa**:
+```bash
+python parcial_1.py
+```
+
+3. **Elegir qué hacer**:
+   - **Opción 1**: Usar Random Forest (Bosque Aleatorio)
+   - **Opción 2**: Usar Regresión Logística
+   - **Opción 3**: Salir del programa
+
+### Librerías utilizadas
+- Python 3.x (biblioteca estándar).
+- `math` para operaciones numéricas elementales.
+- NumPy (cálculo numérico)
+  - Instalación: `pip install numpy`
+  - Documentación: `https://numpy.org/doc/`
+- pandas (manipulación de datos)
+  - Instalación: `pip install pandas`
+  - Documentación: `https://pandas.pydata.org/docs/`
+- Matplotlib (visualización)
+  - Instalación: `pip install matplotlib`
+  - Documentación: `https://matplotlib.org/stable/`
+- scikit-learn (aprendizaje automático)
+  - Instalación: `pip install scikit-learn`
+  - Documentación: `https://scikit-learn.org/stable/`
+- ucimlrepo (carga de datasets UCI)
+  - Instalación: `pip install ucimlrepo`
+  - Documentación: `https://pypi.org/project/ucimlrepo/`
+- seaborn (visualización avanzada)
+  - Instalación: `pip install seaborn`
+  - Documentación: `https://seaborn.pydata.org/`
+- Opcional para actividades en cuadernos:
+  - Jupyter
+    - Instalación: `pip install jupyter`
+    - Documentación: `https://jupyter.org/`
+  - IPykernel
+    - Instalación: `pip install ipykernel`
+    - Documentación: `https://ipykernel.readthedocs.io/en/latest/`
+
+### Entorno virtual recomendado
+Para aislar dependencias y facilitar la reproducción, se recomienda usar un entorno virtual con `venv`:
+
+macOS / Linux:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+```
+
+Windows (PowerShell):
+```powershell
+py -m venv .venv
+.venv\\Scripts\\Activate.ps1
+python -m pip install --upgrade pip
+```
+
+Instalar las librerías requeridas:
+```bash
+pip install numpy pandas matplotlib scikit-learn ucimlrepo seaborn
+# Opcional para cuadernos
+pip install jupyter ipykernel
+```
+
+O usar el archivo de dependencias del proyecto:
+```bash
+pip install -r requirements.txt
+```
+
+Para salir del entorno: `deactivate`.
+
+---
+
+## 📊 Funcionamiento del Programa
+
+### Pasos que sigue:
 
 1. **Carga los datos**: Toma información de pacientes con problemas del corazón
 2. **Analiza los datos**: Muestra estadísticas básicas
@@ -383,7 +354,7 @@ Según nuestros modelos, las características más críticas para la supervivenc
 8. **Pausa interactiva**: Espera a que presiones una tecla para continuar
 9. **Regresa al menú**: Puedes elegir otra opción o salir
 
-#### Opciones disponibles:
+### Opciones disponibles:
 
 **Opción 1 - Random Forest (Bosque Aleatorio)**:
 - Usa 100 árboles de decisión
@@ -399,7 +370,7 @@ Según nuestros modelos, las características más críticas para la supervivenc
 - Termina el programa
 - Muestra mensaje de despedida
 
-#### Lo que obtienes:
+### Lo que obtienes:
 
 - **Gráficos de colores**: Para entender mejor los resultados (se muestran primero)
 - **Números de precisión**: Qué tan bien funciona cada modelo (se muestran después)
@@ -408,7 +379,7 @@ Según nuestros modelos, las características más críticas para la supervivenc
 - **Métricas completas**: Exactitud, sensibilidad, especificidad, F1-Score, etc.
 - **Cálculos precisos**: Usando funciones especializadas del archivo `metricas_clasificacion.py`
 
-#### Orden de presentación:
+### Orden de presentación:
 
 1. **Entrenamiento del modelo** con reporte básico
 2. **Gráficos visuales** (importancia de características, matriz de confusión)
@@ -417,7 +388,9 @@ Según nuestros modelos, las características más críticas para la supervivenc
 5. **Pausa interactiva** para que el usuario pueda leer las métricas
 6. **Regreso al menú** principal para nueva selección
 
-## Referencias y Enlaces Útiles
+---
+
+## 📚 Referencias y Enlaces Útiles
 
 ### Dataset Original
 - **UCI ML Repository**: [Myocardial Infarction Complications](https://archive.ics.uci.edu/dataset/579/myocardial+infarction+complications)
@@ -438,5 +411,3 @@ Según nuestros modelos, las características más críticas para la supervivenc
 
 ### Uso Responsable
 ⚠️ **Importante**: Este proyecto es únicamente para fines educativos y de investigación. No debe utilizarse para diagnóstico médico real. Siempre consulte con profesionales médicos calificados para cualquier decisión relacionada con la salud.
-
-
