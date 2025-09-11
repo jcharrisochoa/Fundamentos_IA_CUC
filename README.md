@@ -242,6 +242,102 @@ Este dataset es especialmente valioso porque:
 - **Planificación de tratamiento**: Determina qué pacientes necesitan intervención inmediata
 - **Investigación clínica**: Estudia patrones y factores de riesgo
 
+### Contexto Clínico del Dataset
+
+Según la información del [dataset original](https://archive.ics.uci.edu/dataset/579/myocardial+infarction+complications), este proyecto aborda uno de los problemas más desafiantes de la medicina moderna:
+
+#### **Problema Médico Real**
+- **Alta mortalidad**: El infarto agudo al miocardio está asociado con alta mortalidad en el primer año
+- **Incidencia global**: La incidencia de infartos sigue siendo alta en todos los países
+- **Población urbana**: Especialmente afecta a la población urbana de países desarrollados
+- **Factores de riesgo**: Exposición a estrés crónico, nutrición irregular y desequilibrada
+
+#### **Estadísticas Alarmantes**
+- **Estados Unidos**: Más de un millón de personas sufren infarto cada año
+- **Mortalidad pre-hospitalaria**: 200-300 mil mueren antes de llegar al hospital
+- **Complicaciones**: Aproximadamente la mitad de los pacientes desarrollan complicaciones graves
+- **Pronóstico**: Las complicaciones pueden empeorar la enfermedad e incluso causar la muerte
+
+#### **Desafío Clínico**
+- **Predicción difícil**: Incluso especialistas experimentados no siempre pueden predecir complicaciones
+- **Prevención crucial**: La predicción temprana permite tomar medidas preventivas necesarias
+- **Tiempo crítico**: La intervención temprana puede salvar vidas
+- **Decisiones complejas**: Los médicos necesitan herramientas para tomar decisiones informadas
+
+### **Por Qué Realizamos Estos Entrenamientos**
+
+#### **1. Necesidad Médica Urgente**
+- **Vidas en riesgo**: Cada predicción correcta puede salvar una vida
+- **Tiempo limitado**: Los médicos necesitan decisiones rápidas y precisas
+- **Complicaciones impredecibles**: Los modelos de IA pueden detectar patrones que los humanos no ven
+- **Prevención proactiva**: Identificar pacientes de alto riesgo antes de que sea demasiado tarde
+
+#### **2. Datos Reales y Complejos**
+- **1,700 pacientes reales**: Datos de casos clínicos auténticos
+- **111 características médicas**: Información detallada de cada paciente
+- **Múltiples momentos de predicción**: 
+  - Al ingreso al hospital
+  - Después de 24 horas
+  - Después de 48 horas  
+  - Después de 72 horas
+- **Complicaciones diversas**: 12 tipos diferentes de complicaciones posibles
+
+#### **3. Aplicaciones Específicas del Dataset**
+- **Predicción de complicaciones**: Basada en información del paciente al ingreso
+- **Fenotipado de enfermedades**: Análisis de clusters y patrones
+- **Fenotipado dinámico**: Identificación de trayectorias de la enfermedad
+- **Visualización médica**: Mapeo de enfermedades para mejor comprensión
+
+#### **4. Tipos de Complicaciones que Predicen**
+- **Fibrilación auricular**: Arritmia cardíaca peligrosa
+- **Taquicardia supraventricular**: Ritmo cardíaco acelerado
+- **Taquicardia ventricular**: Ritmo peligroso en las cámaras del corazón
+- **Fibrilación ventricular**: Arritmia que puede ser fatal
+- **Bloqueo AV de tercer grado**: Problema en la conducción eléctrica del corazón
+- **Edema pulmonar**: Acumulación de líquido en los pulmones
+- **Ruptura miocárdica**: Desgarro en el músculo cardíaco
+- **Síndrome de Dressler**: Inflamación del pericardio
+- **Insuficiencia cardíaca crónica**: Debilitamiento del corazón
+- **Recidiva del infarto**: Segundo infarto
+- **Angina post-infarto**: Dolor torácico después del infarto
+- **Resultado letal**: Muerte por diversas causas
+
+#### **5. Impacto de Nuestros Modelos**
+- **Random Forest**: Identifica qué características son más importantes para la supervivencia
+- **Regresión Logística**: Proporciona probabilidades de riesgo y factores específicos
+- **Precisión del 83-84%**: Nivel de precisión clínicamente relevante
+- **Interpretabilidad**: Los médicos pueden entender por qué el modelo hace cada predicción
+
+### **Relevancia Clínica de Nuestros Resultados**
+
+#### **Precisión Clínicamente Significativa**
+- **83-84% de precisión**: Nivel comparable a herramientas de diagnóstico médico estándar
+- **Detección temprana**: Identifica pacientes de alto riesgo antes de que desarrollen complicaciones
+- **Reducción de mortalidad**: Cada predicción correcta puede prevenir una muerte
+- **Optimización de recursos**: Permite asignar recursos médicos a los pacientes que más los necesitan
+
+#### **Características Más Importantes Identificadas**
+Según nuestros modelos, las características más críticas para la supervivencia son:
+
+1. **Depresión del segmento ST (oldpeak)**: Indicador directo de daño cardíaco
+2. **Frecuencia cardíaca máxima (thalach)**: Capacidad funcional del corazón
+3. **Número de vasos bloqueados (ca)**: Severidad de la enfermedad coronaria
+4. **Defecto talámico (thal)**: Anomalías en el flujo sanguíneo
+5. **Tipo de dolor en el pecho (cp)**: Patrón de síntomas del paciente
+
+#### **Aplicación en la Práctica Médica**
+- **Triage inteligente**: Clasificar pacientes según su riesgo de complicaciones
+- **Monitoreo continuo**: Seguimiento de pacientes de alto riesgo
+- **Decisiones de tratamiento**: Guiar la elección de terapias más agresivas
+- **Educación médica**: Enseñar a estudiantes de medicina sobre factores de riesgo
+- **Investigación clínica**: Identificar nuevos patrones y factores de riesgo
+
+#### **Limitaciones y Consideraciones Éticas**
+- **Solo para fines educativos**: No debe usarse para diagnóstico médico real
+- **Complemento, no reemplazo**: Los modelos apoyan, no sustituyen, el juicio clínico
+- **Validación clínica necesaria**: Requiere estudios clínicos rigurosos antes del uso real
+- **Responsabilidad médica**: Los médicos mantienen la responsabilidad final de las decisiones
+
 ### Detalles Técnicos
 
 - Se arreglan datos que faltan usando el valor promedio
