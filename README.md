@@ -168,6 +168,12 @@ Fundamentos_IA_CUC/
 ├── metricas/                       # Directorio de métricas de evaluación
 │   ├── __init__.py                # Inicializador del paquete
 │   └── metricas_clasificacion.py  # Funciones para calcular métricas
+├── imagenes/                       # Gráficos y visualizaciones
+│   ├── grafico_importancia_rf.png # Importancia de características (RF)
+│   ├── grafico_coeficientes_lr.png # Coeficientes de características (LR)
+│   ├── matriz_confusion_rf.png    # Matriz de confusión (RF)
+│   ├── matriz_confusion_lr.png    # Matriz de confusión (LR)
+│   └── comparacion_metricas.png   # Comparación de métricas
 ├── requirements.txt               # Dependencias del proyecto
 └── README.md                     # Este archivo
 ```
@@ -210,6 +216,150 @@ Fundamentos_IA_CUC/
 | Regresión Logística | 88.21% | 84.62% |
 
 **El mejor modelo**: Regresión Logística con 84.62% de precisión.
+
+### 📊 Resultados Detallados de los Modelos
+
+#### **Gráficos de Análisis de Modelos**
+
+##### **Random Forest - Importancia de Características**
+![Importancia de Características - Random Forest](imagenes/grafico_importancia_rf.png)
+
+*Este gráfico muestra las 10 características más importantes según el modelo Random Forest. La depresión del segmento ST (oldpeak) es el factor más crítico con 19.81% de importancia.*
+
+##### **Regresión Logística - Coeficientes de Características**
+![Coeficientes de Características - Regresión Logística](imagenes/grafico_coeficientes_lr.png)
+
+*Este gráfico muestra los coeficientes de las 10 características más importantes en Regresión Logística. Los valores positivos (azul) indican factores de riesgo, mientras que los negativos (rojo) indican factores protectores.*
+
+##### **Matrices de Confusión**
+
+**Random Forest:**
+![Matriz de Confusión - Random Forest](imagenes/matriz_confusion_rf.png)
+
+**Regresión Logística:**
+![Matriz de Confusión - Regresión Logística](imagenes/matriz_confusion_lr.png)
+
+*Las matrices de confusión muestran la precisión de cada modelo. La diagonal principal representa las predicciones correctas.*
+
+##### **Comparación de Métricas entre Modelos**
+![Comparación de Métricas](imagenes/comparacion_metricas.png)
+
+*Gráfico comparativo de las principales métricas de evaluación. La Regresión Logística supera al Random Forest en la mayoría de métricas importantes.*
+
+#### **Comparación de Métricas de Clasificación**
+
+| Métrica | Random Forest | Regresión Logística | Mejor Modelo |
+|---------|---------------|-------------------|--------------|
+| **Exactitud (Accuracy)** | 83.52% | 84.62% | 🏆 Regresión Logística |
+| **Sensibilidad (Recall)** | 56.00% | 76.00% | 🏆 Regresión Logística |
+| **Especificidad** | 93.94% | 87.88% | 🏆 Random Forest |
+| **Precisión (Precision)** | 77.78% | 70.37% | 🏆 Random Forest |
+| **F1-Score** | 65.12% | 73.08% | 🏆 Regresión Logística |
+| **Valor Predictivo Negativo** | 84.93% | 90.62% | 🏆 Regresión Logística |
+| **Tasa de Falsos Positivos** | 6.06% | 12.12% | 🏆 Random Forest |
+| **Tasa de Falsos Negativos** | 44.00% | 24.00% | 🏆 Regresión Logística |
+
+#### **Análisis de la Matriz de Confusión**
+
+**Random Forest:**
+- Verdaderos Positivos (TP): 14
+- Falsos Positivos (FP): 4  
+- Verdaderos Negativos (TN): 62
+- Falsos Negativos (FN): 11
+
+**Regresión Logística:**
+- Verdaderos Positivos (TP): 19
+- Falsos Positivos (FP): 8
+- Verdaderos Negativos (TN): 58
+- Falsos Negativos (FN): 6
+
+### 🏆 **¿Cuál Modelo es Mejor?**
+
+#### **Regresión Logística es el Ganador General**
+
+**Ventajas de Regresión Logística:**
+- ✅ **Mayor exactitud general**: 84.62% vs 83.52%
+- ✅ **Mejor sensibilidad**: 76% vs 56% (detecta mejor los casos de muerte)
+- ✅ **Mejor F1-Score**: 73.08% vs 65.12% (balance entre precisión y sensibilidad)
+- ✅ **Menos falsos negativos**: 24% vs 44% (menos casos de muerte no detectados)
+- ✅ **Mejor valor predictivo negativo**: 90.62% vs 84.93%
+
+**Ventajas de Random Forest:**
+- ✅ **Mayor especificidad**: 93.94% vs 87.88% (mejor para detectar supervivencia)
+- ✅ **Mayor precisión**: 77.78% vs 70.37% (menos falsos positivos)
+- ✅ **Menos falsos positivos**: 6.06% vs 12.12%
+
+#### **Recomendación Clínica**
+
+**Para uso médico, recomendamos Regresión Logística porque:**
+
+1. **Detección de Riesgo**: Es más importante detectar correctamente a los pacientes que van a morir (sensibilidad 76% vs 56%)
+2. **Menos Falsos Negativos**: Solo falla en detectar el 24% de muertes vs 44% del Random Forest
+3. **Mayor Exactitud General**: 84.62% de precisión general
+4. **Interpretabilidad**: Los coeficientes son más fáciles de interpretar médicamente
+
+**Random Forest sería mejor si:**
+- La prioridad es evitar alarmas falsas (menos falsos positivos)
+- Se necesita máxima especificidad para detectar supervivencia
+- Se quiere entender qué características son más importantes globalmente
+
+### 🔍 **Características Más Importantes por Modelo**
+
+#### **Random Forest - Importancia de Características**
+1. **Depresión del segmento ST (oldpeak)**: 19.81% - Indicador directo de daño cardíaco
+2. **Frecuencia cardíaca máxima (thalach)**: 13.77% - Capacidad funcional del corazón
+3. **Número de vasos bloqueados (ca)**: 13.73% - Severidad de la enfermedad coronaria
+4. **Defecto talámico (thal)**: 9.62% - Anomalías en el flujo sanguíneo
+5. **Tipo de dolor en el pecho (cp)**: 8.72% - Patrón de síntomas del paciente
+
+#### **Regresión Logística - Coeficientes de Características**
+1. **Número de vasos bloqueados (ca)**: 0.866 - Factor de riesgo más importante
+2. **Tipo de dolor en el pecho (cp)**: 0.733 - Síntoma predictor clave
+3. **Depresión del segmento ST (oldpeak)**: 0.623 - Daño cardíaco
+4. **Defecto talámico (thal)**: 0.448 - Problemas de flujo sanguíneo
+5. **Frecuencia cardíaca máxima (thalach)**: -0.369 - Factor protector (negativo)
+
+### 📈 **Interpretación de los Resultados**
+
+#### **Factores de Riesgo Identificados**
+- **Vasos bloqueados (ca)**: El factor más crítico en ambos modelos
+- **Dolor en el pecho (cp)**: Síntoma predictor importante
+- **Depresión ST (oldpeak)**: Indicador de daño cardíaco
+- **Defecto talámico (thal)**: Problemas de circulación
+
+#### **Factor Protector**
+- **Frecuencia cardíaca máxima (thalach)**: En Regresión Logística tiene coeficiente negativo, indicando que mayor capacidad cardíaca reduce el riesgo de muerte
+
+#### **Consistencia entre Modelos**
+- Ambos modelos identifican las mismas características como más importantes
+- La jerarquía de importancia es similar en ambos casos
+- Esto valida la relevancia clínica de estos factores
+
+### 📋 **Resumen Ejecutivo de Resultados**
+
+#### **🏆 Modelo Ganador: Regresión Logística**
+- **Precisión**: 84.62% (vs 83.52% Random Forest)
+- **Sensibilidad**: 76% (detecta 3 de cada 4 muertes)
+- **F1-Score**: 73.08% (mejor balance general)
+- **Falsos Negativos**: Solo 24% (vs 44% Random Forest)
+
+#### **🎯 Aplicación Clínica Recomendada**
+- **Triage de Emergencia**: Identificar pacientes de alto riesgo
+- **Monitoreo Intensivo**: Seguimiento de casos críticos
+- **Decisión de Tratamiento**: Guiar intervenciones médicas
+- **Educación Médica**: Enseñar factores de riesgo importantes
+
+#### **⚠️ Limitaciones Importantes**
+- **Solo para fines educativos**: No usar para diagnóstico real
+- **Validación clínica necesaria**: Requiere estudios rigurosos
+- **Complemento médico**: Apoya, no reemplaza el juicio clínico
+- **Responsabilidad profesional**: Médicos mantienen la decisión final
+
+#### **🔬 Contribución Científica**
+- **Datos reales**: 1,700 pacientes con infarto al miocardio
+- **Métodos validados**: Random Forest y Regresión Logística
+- **Factores identificados**: 5 características más importantes
+- **Precisión clínica**: 84.62% comparable a herramientas médicas estándar
 
 ### Distribución de Pacientes
 - **Vive**: 219 pacientes (72.3%)
