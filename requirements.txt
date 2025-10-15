@@ -7,9 +7,6 @@ opencv-python==4.9.0.80
 ipykernel==6.29.4
 tensorflow==2.16.1
 keras==3.3.3
-ucimlrepo
-pandas
-numpy
-scikit-learn
-matplotlib
+ultralytics==8.2.0
+Pillow==10.3.0
 seaborn
