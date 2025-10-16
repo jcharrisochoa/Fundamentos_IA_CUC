@@ -1,12 +1,26 @@
-numpy>=1.26.4
-matplotlib>=3.8.4
-pandas>=2.2.2
-scikit-learn>=1.5.0
-ucimlrepo>=0.0.7
-opencv-python>=4.9.0.80
-ipykernel>=6.29.4
-tensorflow>=2.16.1
-keras>=3.3.3
-ultralytics>=8.2.0
-Pillow>=10.3.0
+# Dependencias del proyecto Fundamentos IA CUC
+# Instalación: pip3 install -r requirements.txt
+
+# Análisis de datos
+numpy==1.26.4
+pandas==2.2.2
+matplotlib==3.8.4
 seaborn
+
+# Machine Learning
+scikit-learn==1.5.0
+tensorflow==2.16.1
+keras==3.3.3
+
+# Visión Artificial - Detección de Tapabocas
+opencv-python==4.9.0.80
+ultralytics==8.3.214
+Pillow==11.3.0
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Notebooks
+ipykernel==6.29.4
+
+# Datasets
+ucimlrepo==0.0.7
