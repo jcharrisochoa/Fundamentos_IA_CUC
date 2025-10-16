@@ -1,0 +1,26 @@
+# Dependencias del proyecto Fundamentos IA CUC
+# Instalación: pip3 install -r requirements.txt
+
+# Análisis de datos
+numpy>=2.0.0
+pandas>=2.2.2
+matplotlib>=3.9.0
+seaborn
+
+# Machine Learning
+scikit-learn>=1.5.0
+tensorflow>=2.16.1
+keras>=3.3.3
+
+# Visión Artificial - Detección de Tapabocas
+opencv-python>=4.10.0
+ultralytics>=8.3.0
+Pillow>=11.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Notebooks
+ipykernel>=6.29.0
+
+# Datasets
+ucimlrepo>=0.0.7
